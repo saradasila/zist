@@ -1,0 +1,141 @@
+:host {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 1em;
+  color: #FFFFFF;
+}
+
+form {
+  //font-size: 0.8em;
+  width: 330px;
+
+  .form-separator {
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 1rem;
+    > .col,
+    > [class*="col-"] {
+      padding-right: 0;
+      padding-left: 0;
+    }
+    > .col {
+      align-items: center;
+      justify-content: center;
+    }
+    .or {
+      color: #FFFFFF;
+      font-size: 1em;
+      text-align: center;
+    }
+
+    .divider-line {
+      display: block;
+      height: 1px;
+      width: 80%;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+  }
+
+  input {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 2px;
+    transition: all 0.3s;
+    color: rgba(255, 255, 255, 0.8);
+    &::placeholder {
+      color: #FFFFFF;
+      opacity: 0.8;
+    }
+
+    &:focus {
+      background: rgba(255, 255, 255, 0.4);
+      color: #FFFFFF;
+    }
+  }
+
+  .login-btn {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.4);
+
+    &:hover {
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    &:active,
+    &:focus {
+      box-shadow: none;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  .assurance,
+  .login-links {
+    color: white;
+    text-align: center;
+    font-size: 0.9em;
+  }
+  .login-links {
+    margin-top: 1em;
+
+    a {
+      color: #FFFFFF;
+      opacity: 0.8;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  .btn-auth {
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    border-radius: 1px;
+    padding: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    outline: none;
+    cursor: pointer;
+    text-align: left;
+    background: #fff;
+    border: #fff solid 1px;
+    box-shadow: 1px 1px 5px 0 #b7b7b7;
+    .icon,
+    .text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon {
+      width: 2.857em;
+      height: 2.857em;
+      border-radius: 1px;
+      margin-right: 16px;
+    }
+    .text {
+      font-weight: 500;
+      text-transform: uppercase;
+      color: #000;
+      opacity: 0.54;
+      padding-right: 8px;
+    }
+    &.fb-auth {
+      .icon {
+        background: url("../../assets/fb-logo.png") no-repeat 50%;
+      }
+    }
+  }
+}
