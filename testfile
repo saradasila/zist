@@ -1,0 +1,70 @@
+<?php
+/**
+* @file
+* Contains \Drupal\test_api\Controller\TestAPIController.
+*/
+
+namespace Drupal\test_api\Controller;
+use Drupal\Core\Controller\ControllerBase;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\JsonResponse;
+class TestAPIController extends ControllerBase {
+public function get_example( Request $request ) {
+$apikey = $_REQUEST['apikey'];
+	$config_apikey = \Drupal::config('api.settings')->get('apikey');
+$response['data'] = 'Some test data to return';
+$response['method'] = 'GET';
+if($apikey == $config_apikey){
+		$nid = $_REQUEST['nid'];
+$current_url = $_SERVER['HTTP_HOST'];
+$response['data'] = file_get_contents('http://'.$current_url.'/json/article-id?nid='.$nid);
+		$jsondecodedata = json_decode($response['data'],TRUE);
+// print_r($jsondecodedata);
+
+	foreach($jsondecodedata as $key=>$val){
+$node['title'] = $val['title'];
+	 $node['desc'] = $val['field_des'];
+	 $node_array[] = $node;
+	}
+echo '<pre>';
+	//$jdatas = json_encode($node_array,JSON_PRETTY_PRINT);
+echo json_encode($node_array,JSON_PRETTY_PRINT);die;
+echo '</pre>';
+
+	}else{
+		$response['data'] = "API key is invalid.";
+		return new JsonResponse( $response );
+	}
+}
+
+public function put_example( Request $request ) {
+$response['data'] = 'Some test data to return';
+$response['method'] = 'PUT';
+return new JsonResponse( $response );
+}
+
+public function post_example( Request $request ) {
+
+// This condition checks the `Content-type` and makes sure to
+// decode JSON string from the request body into array.
+if ( 0 === strpos( $request->headers->get( 'Content-Type' ), 'application/json' ) ) {
+$data = json_decode( $request->getContent(), TRUE );
+$request->request->replace( is_array( $data ) ? $data : [] );
+}
+
+$response['data'] = 'Some test data to return';
+$response['method'] = 'POST';
+
+return new JsonResponse( $response );
+}
+
+public function delete_example( Request $request ) {
+
+$response['data'] = 'Some test data to return';
+$response['method'] = 'DELETE';
+
+return new JsonResponse( $response );
+}
+
+}
+?>
